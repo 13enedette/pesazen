@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PesaZen — Contact</title>
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+      /* Form styling */
+      .form-box {
+          background: var(--card-bg);
+          padding: 22px;
+          border-radius: 14px;
+          box-shadow: 0 14px 40px rgba(8,21,17,0.06);
+          border-left: 6px solid var(--gold);
+      }
+      .form-box input,
+      .form-box textarea {
+          width: 100%;
+          padding: 12px;
+          margin: 8px 0 14px;
+          border: 2px solid rgba(203,163,43,0.25);
+          border-radius: 10px;
+          font-size: 15px;
+          outline: none;
+          transition: 0.2s ease;
+      }
+      .form-box input:focus,
+      .form-box textarea:focus {
+          border-color: var(--gold);
+          box-shadow: 0 0 10px rgba(203,163,43,0.2);
+      }
+      .form-box button {
+          background: var(--gold);
+          color: var(--green-deep);
+          padding: 12px 18px;
+          border-radius: 10px;
+          border: none;
+          font-weight: 700;
+          cursor: pointer;
+          width: 100%;
+          transition: 0.2s ease;
+      }
+      .form-box button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(203,163,43,0.3);
+      }
+
+      /* 5 STAR RATING */
+      .stars {
+          display: flex;
+          font-size: 26px;
+          cursor: pointer;
+          margin: 10px 0;
+      }
+      .stars span {
+          color: #ccc;
+          transition: color 0.2s;
+      }
+      .stars span.active {
+          color: var(--gold);
+      }
+
+      /* FLOATING SUCCESS POPUP */
+      .popup {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          background: var(--green-deep);
+          color: white;
+          padding: 14px 22px;
+          border-radius: 12px;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.4s ease;
+          box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+          z-index: 2000;
+      }
+      .popup.show {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      /* FAQ */
+      .faq-box {
+          margin-top: 30px;
+      }
+      .faq-item {
+          background: var(--card-bg);
+          padding: 14px;
+          border-radius: 10px;
+          margin-bottom: 10px;
+          border-left: 4px solid var(--gold);
+          cursor: pointer;
+      }
+      .faq-item h4 {
+          margin: 0;
+          font-size: 16px;
+          color: var(--green-deep);
+      }
+      .faq-answer {
+          display: none;
+          padding-top: 8px;
+          color: #444;
+      }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="index.html">
+    <img src="c79360c6-1b25-465c-89a8-23e546516b5b.jpg" alt="PesaZen Logo" style="height:48px; width:auto;">
+    <div>
+      <h1>PesaZen</h1>
+      <p>Your future, our priority</p>
+    </div>
+  </a>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="market.html">Market</a>
+    <a href="why.html">Why Us</a>
+    <a href="comparison.html">Comparison</a>
+    <a class="active" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="container">
+  <h2 class="section-title">Need Help? Ask Us Anything</h2>
+  <p class="lead">Use this feedback box to ask questions, request help, or share your thoughts about PesaZen.</p>
+
+  <div class="grid" style="grid-template-columns:1fr 1fr; gap:20px;">
+
+    <!-- CONTACT INFO -->
+    <div class="card">
+      <h3>Contact Details</h3>
+      <p><strong>Email:</strong> support@pesazen.com</p>
+      <p><strong>Phone:</strong> +254 700 000 000</p>
+      <p><strong>Location:</strong> Nairobi, Kenya</p>
+    </div>
+
+    <!-- Feedback Box -->
+    <div class="form-box">
+      <h3>Feedback & Questions</h3>
+
+      <label>Name</label>
+      <input type="text" id="fbName" placeholder="Your name">
+
+      <label>Your Message</label>
+      <textarea id="fbMessage" rows="5" placeholder="Type your question or feedback..."></textarea>
+
+      <label>Rate Your Experience</label>
+      <div class="stars" id="starRating">
+        <span data-star="1">⭐</span>
+        <span data-star="2">⭐</span>
+        <span data-star="3">⭐</span>
+        <span data-star="4">⭐</span>
+        <span data-star="5">⭐</span>
+      </div>
+
+      <button onclick="submitFeedback()">Submit</button>
+    </div>
+
+  </div>
+
+  <!-- FAQ SECTION -->
+  <div class="faq-box">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>What is PesaZen?</h4>
+      <div class="faq-answer">PesaZen is a modern pension company offering flexible, digital retirement savings solutions.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>How do I start saving?</h4>
+      <div class="faq-answer">Choose one of our pension plans and start contributing with any amount that fits your budget.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Is my money safe?</h4>
+      <div class="faq-answer">Yes. All funds are protected and regulated under Kenyan pension laws.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Can employers use PesaZen?</h4>
+      <div class="faq-answer">Yes! SMEs can enroll employees in our pension programs easily.</div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  © 2025 PesaZen
+</footer>
+
+<!-- Floating success popup -->
+<div class="popup" id="popup">Thank you! Your feedback has been received.</div>
+
+<script src="../scripts.js"></script>
+
+<script>
+/* STAR RATING */
+let selectedStars = 0;
+document.querySelectorAll(".stars span").forEach(star => {
+    star.addEventListener("click", function(){
+        selectedStars = this.getAttribute("data-star");
+        document.querySelectorAll(".stars span").forEach(s => s.classList.remove("active"));
+        for(let i=0; i<selectedStars; i++){
+            document.querySelectorAll(".stars span")[i].classList.add("active");
+        }
+    });
+});
+
+/* FLOATING POPUP */
+function showPopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.add("show");
+    setTimeout(() => popup.classList.remove("show"), 3000);
+}
+
+/* Submit Feedback */
+function submitFeedback() {
+    let name = document.getElementById("fbName").value;
+    let message = document.getElementById("fbMessage").value;
+
+    if (name === "" || message === "") {
+        alert("Please fill in your name and message.");
+        return;
+    }
+
+    // Here you could send data to a server or third-party form endpoint.
+    showPopup();
+}
+
+/* FAQ DROPDOWN */
+function toggleFAQ(item) {
+    let answer = item.querySelector(".faq-answer");
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

@@ -1,4 +1,6 @@
  Pesa Zen – Pension Management App
+ 
+ created by fiona, christa, betty and holiness for a class project 
 
  Overview
 
